@@ -215,16 +215,15 @@ async def search_locked(bot, ev):
     rank_list = list(clan_list.keys())
     clan = clan_list.get(rank_list[0], {})
 
-    rank = clan['rank']
+    rank = str(clan['rank']).replace('.0', '')
     clan_name = clan['clan_name']
     member_num = str(clan['member_num']).replace('.0', '')
     leader_name = clan['leader_name']
-    damage = clan['damage']
-    lap = clan['lap']
+    damage = str(clan['damage']).replace('.0', '')
     grade_rank = str(clan['grade_rank']).replace('.0', '')
 
     formatted_datetime = f"{up_time[:4]}-{up_time[4:6]}-{up_time[6:8]} {up_time[8:10]}:{up_time[10:]}"
     msg = f'公会名：{clan_name}\n时间：{formatted_datetime}\n排名：{rank}'
     msg += f'\n会长名：{leader_name}\n人数：{member_num}人\n分数：{damage}'
-    msg += f'\n等效周目：{lap}周目\n上期排名：{grade_rank}'
+    msg += f'\n上期排名：{grade_rank}'
     await bot.send(ev, msg)
